@@ -1,0 +1,14 @@
+services:
+  kali-htb:
+    build: .
+    container_name: kali-htb
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - ./vpn-config:/vpn
+      - ./htb-data:/data
+    stdin_open: true
+    tty: true
+    command: /bin/bash
