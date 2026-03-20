@@ -5,6 +5,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         kali-linux-core \
+        netcat-openbsd \
+        sqlmap \
+        whatweb \
+        nikto \
+        hydra \
+        amass \
+        rlwrap \
+        tree \
+        file \
         procps \
         psmisc \
         tmux \
