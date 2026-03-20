@@ -14,9 +14,9 @@ För att arbeta med Hack The Box behöver du en Linux-miljö med rätt verktyg, 
 
 Du behöver inte använda detta repo eller denna Kali setup för att göra uppgifter.
 
-Denna repository visar hur du kan använda Docker för att köra Kali Linux i en container och ansluta till Hack The Box via VPN.
+Denna repo visar hur du kan använda Docker för att köra Kali Linux i en container och ansluta till Hack The Box via VPN.
 
----
+❗ Om du använder denna docker setup så har du inget grafisk användargränssnitt. Denna setup kör bara med CLI.
 
 ## 🚀 Kom igång
 
@@ -25,28 +25,31 @@ Denna repository visar hur du kan använda Docker för att köra Kali Linux i en
 Ladda ner och installera Docker:
 👉 [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 
-Se till att Docker är igång innan du fortsätter.
-
 ---
 
-### 2. Klona repot
+### 2. Klona repon
 
 ```bash
 git clone https://github.com/krullmizter/npods-2026.git
-cd npods-2026/kali-htb
 ```
+
+Navigera sen in till mappen `/kali-htb`
 
 ---
 
 ### 3. Bygg Kali-containern
 
+❗ **Se till att Docker är igång innan du fortsätter.**
+
+Inuti `/kali-htb` mappen kör du:
+
 ```bash
 docker compose up -d
 ```
 
-⏳ Första gången kan detta ta flera minuter eftersom imagen byggs.
+⏳ Första gången kan detta ta flera minuter eftersom allt byggs.
 
-Detta ska printas i terminalen då det är klart:
+Detta ska printas i terminal fönstret då allt är klart:
 
 ```bash
 Image kali-htb-kali-htb  Built
@@ -58,19 +61,19 @@ Container kali-htb       Created
 
 ### 4. Få tillgång till din Kali container
 
-Då docker compose har gjort sitt kör då:
+Då `docker compose` har gjort sitt kör då inuti `/kali-htb`:
 
 ```bash
 docker compose exec kali-htb /bin/bash
 ```
 
-Nu är du inne i din Kali Linux-miljö.
+Nu är du inne i din Kali Linux-miljö, och kan köra diverse kommandon.
 
 ---
 
 ## 🔐 Anslut till Hack The Box via VPN
 
-### 1. Skapa konto
+### 1. Skapa ett HTB konto
 
 Registrera dig och logga in:
 👉 [https://app.hackthebox.com/home](https://app.hackthebox.com/home)
@@ -87,14 +90,14 @@ Exempel:
 
 ---
 
-### 3. Ladda ner VPN-konfiguration
+### 3. Ladda ner VPN-konfigurations filen till din dator
 
 - Klicka på **"Download VPN"**
 - TCP eller UDP spelar ingen roll
 
 ---
 
-### 4. Lägg filen i rätt mapp
+### 4. Placera filen i rätt mapp
 
 Placera `.ovpn`-filen i:
 
@@ -106,7 +109,7 @@ kali-htb/vpn-config/
 
 ### 5. Starta VPN i Kali
 
-Inuti din Kali-container:
+Inuti din Kali-container, dom du öppnar med `docker compose exec kali-htb /bin/bash`, kör du:
 
 ```bash
 openvpn --config /vpn/din-fil.ovpn
